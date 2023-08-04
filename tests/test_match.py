@@ -1,4 +1,4 @@
-import source.regexParser as regex
+import regexParser.main as regex
 
 def test_generic():
     """Test generic matching patterns"""
