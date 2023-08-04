@@ -4,3 +4,6 @@ __pycache__
 
 # VSCode files
 .vscode
+
+# Package files
+regexParser.egg-info
