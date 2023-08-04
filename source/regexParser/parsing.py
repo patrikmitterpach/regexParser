@@ -4,6 +4,7 @@ def parse(string):
         raise Exception("Unexpected )!")
     return node
 
+
 def _parsing_integer(string, index):
     start_point = index
 
@@ -11,10 +12,11 @@ def _parsing_integer(string, index):
         index += 1
     return index, int(string[start_point:index]) if start_point != index else None
 
+
 def _parsing_postfix(string: str, index: int, node: str):
     if index == len(string) or string[index] not in "*+{":
         return index, node
-    
+
     character = string[index]
     index += 1
 
@@ -29,13 +31,13 @@ def _parsing_postfix(string: str, index: int, node: str):
         rmin = rmax = i
         # Optional number of repetitions
         if index < len(string) and string[index] == ",":
-            index, j = _parsing_integer(string, index+1)
+            index, j = _parsing_integer(string, index + 1)
             rmax = j if j is not None else float("inf")
         if index < len(string) and string[index] == "}":
             index += 1
         else:
             raise Exception("Unbalanced braces")
-        
+
     return index, ["repeat", node, rmin, rmax]
 
 
@@ -60,6 +62,7 @@ def _parsing_node(string: str, index: int):
     index, node = _parsing_postfix(string, index, node)
     return index, node
 
+
 def _parsing_concatenated(string: str, index: int):
     previous = None
 
@@ -73,6 +76,7 @@ def _parsing_concatenated(string: str, index: int):
             previous = ["cat", previous, node]  # type: ignore [unreachable]
     return index, previous
 
+
 def _parsing_split(string: str, index: int):
     index, previous = _parsing_concatenated(string, index)
 
@@ -80,6 +84,6 @@ def _parsing_split(string: str, index: int):
         if string[index] == ")":
             break
         assert string[index] == "|", "BUG"
-        index, node = _parsing_concatenated(string, index+1)
+        index, node = _parsing_concatenated(string, index + 1)
         previous = ["split", previous, node]
     return index, previous

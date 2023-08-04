@@ -3,10 +3,10 @@ def _match_backtrack(node, text, index):
         yield index
     elif node == "dot":
         if index < len(text):
-            yield index+1
+            yield index + 1
     elif isinstance(node, str):
         if index < len(text) and text[index] == node:
-            yield index+1
+            yield index + 1
     elif node[0] == "cat":
         yield from _match_backtrack_concat(node, text, index)
     elif node[0] == "split":
@@ -17,6 +17,7 @@ def _match_backtrack(node, text, index):
     else:
         raise ValueError(f"Unknown instruction: {node[0]}!")
 
+
 def _match_backtrack_concat(node, text, index):
     met = set()  # quick element present lookup, only unique elements
     for index_1 in _match_backtrack(node[1], text, index):
@@ -25,14 +26,15 @@ def _match_backtrack_concat(node, text, index):
         met.add(index_1)
         yield from _match_backtrack(node[2], text, index_1)
 
+
 def _match_backtrack_repeat(node, text, index):
     _, node, rmin, rmax = node
-    
+
     output = []
     if rmin == 0:
         output.append(index)
     start = {index}
-    for i in range(1, rmax+1):
+    for i in range(1, rmax + 1):
         found = set()
         for idx1 in start:
             for idx2 in _match_backtrack(node, text, idx1):
@@ -43,6 +45,7 @@ def _match_backtrack_repeat(node, text, index):
                 break
         start = found
     yield from reversed(output)
+
 
 def match(node, text):
     if not text and not node:
