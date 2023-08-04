@@ -36,11 +36,10 @@ def _parsing_postfix(string: str, index: int, node: str):
         else:
             raise Exception("Unbalanced braces")
         
-    node = ["repeat", node, rmin, rmax]
-    return index, node
+    return index, ["repeat", node, rmin, rmax]
 
 
-def _parsing_node(string: str, index: int) -> list:
+def _parsing_node(string: str, index: int):
     character = string[index]
     index += 1
 
@@ -61,20 +60,20 @@ def _parsing_node(string: str, index: int) -> list:
     index, node = _parsing_postfix(string, index, node)
     return index, node
 
-def _parsing_concatenated(string: str, index: int) -> list:
+def _parsing_concatenated(string: str, index: int):
     previous = None
 
     while index < len(string):
         if string[index] in ")|":
             break
         index, node = _parsing_node(string, index)
-        if previous is None:
+        if not previous:
             previous = node
         else:
-            previous = ["cat", previous, node]
+            previous = ["cat", previous, node]  # type: ignore [unreachable]
     return index, previous
 
-def _parsing_split(string: str, index: int) -> list:
+def _parsing_split(string: str, index: int):
     index, previous = _parsing_concatenated(string, index)
 
     while index < len(string):

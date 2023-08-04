@@ -15,7 +15,7 @@ def _match_backtrack(node, text, index):
     elif node[0] == "repeat":
         yield from _match_backtrack_repeat(node, text, index)
     else:
-        raise f"Unknown instruction: {node[0]}!"
+        raise ValueError(f"Unknown instruction: {node[0]}!")
 
 def _match_backtrack_concat(node, text, index):
     met = set()  # quick element present lookup, only unique elements
