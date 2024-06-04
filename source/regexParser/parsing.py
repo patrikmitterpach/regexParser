@@ -14,16 +14,18 @@ def _parsing_integer(string, index):
 
 
 def _parsing_postfix(string: str, index: int, node: str):
-    if index == len(string) or string[index] not in "*+{":
+    if index == len(string) or string[index] not in "*+{?":
         return index, node
 
     character = string[index]
     index += 1
 
     if character == "*":
-        rmin, rmax = 0, float("inf")
-    if character == "+":
-        rmin, rmax = 1, float("inf")
+        rmin, rmax = 0, 60
+    elif character == "+":
+        rmin, rmax = 1, 60
+    elif character == "?":
+        rmin, rmax = 0, 1
     else:
         index, i = _parsing_integer(string, index)
         if i is None:
