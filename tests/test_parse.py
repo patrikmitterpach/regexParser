@@ -37,6 +37,6 @@ def test_cat():
 def test_split():
     """Test the '|' character parsing"""
     assert regex.parse("a|b") == ["split", "a", "b"]
-    
+
     assert regex.parse("a|bc") == ["split", "a", ["cat", "b", "c"]]
-    assert regex.parse("(a|b)c") == ['cat', ['split', 'a', 'b'], 'c']
+    assert regex.parse("(a|b)c") == ["cat", ["split", "a", "b"], "c"]

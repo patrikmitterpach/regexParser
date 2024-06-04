@@ -17,4 +17,4 @@ def test_generic():
     assert regex.match("grey", "gray|grey")
 
     assert regex.match("grey", "gr(a|e)y")
-    assert regex.match("grey", "gr(a|e)y")  
+    assert regex.match("grey", "gr(a|e)y")

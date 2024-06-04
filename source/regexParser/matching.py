@@ -34,10 +34,10 @@ def _match_backtrack_repeat(node, text, index):
     if rmin == 0:
         output.append(index)
     start = {index}
-    
+
     if rmax == float("inf"):
         rmax = 100
-        
+
     for i in range(1, rmax + 1):
         found = set()
         for idx1 in start:

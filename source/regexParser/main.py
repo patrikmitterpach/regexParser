@@ -17,6 +17,7 @@ def match(string: str, regex: str):
 def matchText(path: str, pattern: str):
     return text.matchText(path, pattern)
 
+
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         matchText("onShortnessOfLife.txt", sys.argv[1])
