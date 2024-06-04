@@ -30,11 +30,13 @@ def test_cat():
     assert regex.parse("cdd") == ["cat", ["cat", "c", "d"], "d"]
     assert regex.parse("...") == ["cat", ["cat", "dot", "dot"], "dot"]
 
-    assert regex.parse("a+") == ["repeat", "a", 1, float("inf")]
+    assert regex.parse("a+") == ["repeat", "a", 1, 60]
     assert regex.parse("a{3,6}") == ["repeat", "a", 3, 6]
 
 
 def test_split():
     """Test the '|' character parsing"""
     assert regex.parse("a|b") == ["split", "a", "b"]
+    
     assert regex.parse("a|bc") == ["split", "a", ["cat", "b", "c"]]
+    assert regex.parse("(a|b)c") == ['cat', ['split', 'a', 'b'], 'c']
