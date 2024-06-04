@@ -2,10 +2,11 @@
 
 <div align="center">
   
-  [![LinkedIn][linkedin-shield]][linkedin-url]
-  [![GPL License][license-shield]][license-url]
-  ![Size](https://img.shields.io/github/languages/code-size/patrikmitterpach/regexParser?color=green&style=for-the-badge)
+  ![Build Status](https://img.shields.io/github/check-runs/patrikmitterpach/regexparser/master?color=green&style=for-the-badge)
   ![Last Commit](https://img.shields.io/github/last-commit/patrikmitterpach/regexParser?color=green&style=for-the-badge)
+  ![Size](https://img.shields.io/github/languages/code-size/patrikmitterpach/regexParser?color=green&style=for-the-badge)
+  [![GPL License][license-shield]][license-url]
+  [![LinkedIn][linkedin-shield]][linkedin-url]
 
   </div>
 
@@ -21,10 +22,8 @@
 <h3 align="center">regexParser.py</h3>
 
   <p align="center">
-    A recursion based regex parser and matcher, complete with a CI/CD testing pipeline.
+    A recursion based regex parser and matcher
     <br />
-    <br />
-    ·
     <a href="https://github.com/patrikmitterpach/regexParser#installation">Installation</a>
     ·
     <a href="https://github.com/patrikmitterpach/regexParser/blob/main/LICENSE.txt">License</a>
@@ -32,7 +31,7 @@
 </div>
 
 ## About
-This code is aimed at matching basic regex queries. This is done in two steps: parsing and matching. The regex pattern is first decoded into a tree structure, then the target text is matched against the desired tree structure.
+The aim of this project is to create a basic, recursion-based regular expression parser and matcher, bundled with a usable program that replicates the basic functions of a program such as `sed` or `grep`. Furthermore, all the functionalities are to be tested automatically with a continuous integration pipeline. 
 
 
 ## Installation
@@ -43,13 +42,20 @@ To install, clone the repository by running the following command:
 git clone https://github.com/patrikmitterpach/regexParser
 ```
 
-Afterwards, open the folder in your terminal and install the required dependencies and the code itself as a local package:
+Afterwards, open the folder in your terminal and install the required dependencies and the code as a local package:
 
 1. `cd regexParser`
 2. `pip install -r requirements`
 3. `pip install -e .`
 
-Finally, launch the test with the pytest testing suite:
+## Usage
+
+
+Launch the app with `python3 source/regexParser/main.py`. By providing additional parameters, you can specify the desired regex query as well as the location of the text file on which the query should be run. By default, the query `".* "` is run upon the file provided within the repository, the first chapter of Seneca's *On the Shortness of Life*.
+
+![image](https://github.com/patrikmitterpach/regexParser/assets/59344031/430b0b03-821d-473c-8067-a03ba171a5f6)
+
+
 
 4. `pytest`
 
